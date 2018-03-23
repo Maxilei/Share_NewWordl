@@ -24,7 +24,7 @@ CREATE TABLE `parcelle`(`parId` INTEGER,`parAdresse` VARCHAR(25),`parType` VARCH
 
 CREATE TABLE `categorie`(`categId` INTEGER,`categNom` VARCHAR(25),`categImage` VARCHAR(25),`rayonId` INTEGER NOT NULL, foreign key (`rayonId`) references rayon(`rayonId`),primary key(`categId`));
 
-CREATE TABLE `horaireJour`(`libJour` VARCHAR(jour de la semaine),`horId` INTEGER NOT NULL,`prID` INTEGER NOT NULL, foreign key (`horId`) references horaire(`horId`), foreign key (`prID`) references pointRelais(`prID`),primary key(`horId`,`prID`));
+CREATE TABLE `horaireJour`(`libJour` VARCHAR(8),`horId` INTEGER NOT NULL,`prID` INTEGER NOT NULL, foreign key (`horId`) references horaire(`horId`), foreign key (`prID`) references pointRelais(`prID`),primary key(`horId`,`prID`));
 
 CREATE TABLE `variete`(`varId` INTEGER,`varNom` VARCHAR(25),`varImage` VARCHAR(25),`categId` INTEGER NOT NULL, foreign key (`categId`) references categorie(`categId`),primary key(`varId`));
 
