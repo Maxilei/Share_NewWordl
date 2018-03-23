@@ -52,13 +52,8 @@ CREATE TABLE `variete`(`varId` INTEGER,`varNom` VARCHAR(25),`varImage` VARCHAR(2
 
 CREATE TABLE `produit`(`prodID` INTEGER,`prodNom` VARCHAR(25),`prodDateExp` DATE,`prodDescription` VARCHAR(100),`prodImage` VARCHAR(50),`varId` INTEGER NOT NULL,`umId` INTEGER NOT NULL, foreign key (`varId`) references variete(`varId`), foreign key (`umId`) references uniteMesure(`umId`),primary key(`prodID`));
 
-CREATE TABLE `lot`(`lotID` INTEGER,`lotQteAcheter` INTEGER,`lotPrix` INTEGER,`lotQteIni` INTEGER,`lotPU` INTEGER,`lotDescription` VARCHAR,`lotDLC` DATE,`umId` INTEGER NOT NULL,`varId` INTEGER NOT NULL,`producID` INTEGER NOT NULL, foreign key (`umId`) references uniteMesure(`umId`), foreign key (`varId`) references variete(`varId`), foreign key (`producID`) references producteur(`producID`),primary key(`lotID`));
+CREATE TABLE `lot`(`lotID` INTEGER,`lotQteAcheter` INTEGER,`lotPrix` INTEGER,`lotQteIni` INTEGER,`lotPU` INTEGER,`lotDescription` VARCHAR(254),`lotDLC` DATE,`umId` INTEGER ,`varId` INTEGER,`producID` INTEGER ,foreign key (`umId`) references uniteMesure(`umId`),foreign key (`varId`) references variete(`varId`),foreign key (`producID`) references producteur(`producID`),primary key(`lotID`));
 
-CREATE TABLE `LDC`(`qte` INTEGER,`cmdID` INTEGER NOT NULL,`lotID` INTEGER NOT NULL,`prID` INTEGER NOT NULL,`producID` INTEGER NOT NULL,
-	foreign key (`cmdID`) references commande(`cmdID`),
-	foreign key (`lotID`) references lot(`lotID`),
-	foreign key (`prID`) references pointRelais(`prID`),
-	foreign key (`producID`) references producteur(`producID`),
-	primary key(`cmdID`,`lotID`,`prID`,`producID`));
+CREATE TABLE `LDC`(`qte` INTEGER,`cmdID` INTEGER ,`lotID` INTEGER ,`prID` INTEGER ,`producID` INTEGER ,foreign key (`cmdID`) references commande(`cmdID`),	foreign key (`lotID`) references lot(`lotID`),	foreign key (`prID`) references pointRelais(`prID`),foreign key (`producID`) references producteur(`producID`),primary key(`cmdID`,`lotID`,`prID`,`producID`));
 
 CREATE TABLE `Production`(`prodID` INTEGER NOT NULL,`parId` INTEGER NOT NULL, foreign key (`prodID`) references produit(`prodID`), foreign key (`parId`) references parcelle(`parId`),primary key(`prodID`,`parId`));
