@@ -1,3 +1,22 @@
+DROP TABLE IF EXISTS horaire;
+DROP TABLE IF EXISTS QS;
+DROP TABLE IF EXISTS utilisateur;
+DROP TABLE IF EXISTS donnesBancaire;
+DROP TABLE IF EXISTS rayon;
+DROP TABLE IF EXISTS employe;
+DROP TABLE IF EXISTS uniteMesure;
+DROP TABLE IF EXISTS pointRelais;
+DROP TABLE IF EXISTS consommateur;
+DROP TABLE IF EXISTS commande;
+DROP TABLE IF EXISTS parcelle;
+DROP TABLE IF EXISTS categorie;
+DROP TABLE IF EXISTS horaireJour;
+DROP TABLE IF EXISTS variete;
+DROP TABLE IF EXISTS produit;
+DROP TABLE IF EXISTS lot;
+DROP TABLE IF EXISTS LDC;
+DROP TABLE IF EXISTS Production;
+
 CREATE TABLE `horaire`(`horId` INTEGER,`horFermeture` INTEGER,`horOuverture` INTEGER,primary key(`horId`));
 
 CREATE TABLE `QS`(`qsID` INTEGER,`Question` VARCHAR(60),primary key(`qsID`));
@@ -18,7 +37,7 @@ CREATE TABLE `consommateur`(`consID` INTEGER,`utilisateurID` INTEGER NOT NULL, f
 
 CREATE TABLE `producteur`(`producID` INTEGER,`producValidation` BOOL,`utilisateurID` INTEGER NOT NULL, foreign key (`utilisateurID`) references utilisateur(`utilisateurID`),primary key(`producID`));
 
-CREATE TABLE `commande`(`cmdID` INTEGER,`cmdPrix` FLOAT,`cmdDateEnvoie` DATETIME,`cmdDetail` VARCHAR(100),`cmdDate` DATE,`prID` INTEGER NOT NULL,`consID` INTEGER NOT NULL, foreign key (`prID`) references pointRelais(`prID`), foreign key (`consID`) references consommateur(`consID`),primary key(`cmdID`));
+CREATE TABLE `commande`(`cmdID` INTEGER,`cmdPrix` FLOAT,`cmdDetail` VARCHAR(100),`cmdDate` DATE,`prID` INTEGER NOT NULL,`consID` INTEGER NOT NULL, foreign key (`prID`) references pointRelais(`prID`), foreign key (`consID`) references consommateur(`consID`),primary key(`cmdID`));
 
 CREATE TABLE `parcelle`(`parId` INTEGER,`parAdresse` VARCHAR(25),`parType` VARCHAR(25),`parLongitude` VARCHAR(25),`parLatitude` VARCHAR(25),`producID` INTEGER NOT NULL, foreign key (`producID`) references producteur(`producID`),primary key(`parId`));
 
