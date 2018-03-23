@@ -1,0 +1,19 @@
+/* YOUR CUSTOM STYLES */
+div[name="centre"] {
+	text-align: center;
+}
+div[name="categ"]{
+	display: none;
+}
+select[name="categ"]
+{
+	display: none;
+}
+div[name="prod"]
+{
+	display: none;
+}
+select[name="prod"]
+{
+	display: none;
+}
