@@ -30,6 +30,65 @@ insert into consommateur values(1,3);
 insert into consommateur values(2,4);
 insert into consommateur values(3,6);
 
-insert into horaire values(1,"vendredi",10,18);
+insert into horaire values(1,10,18);
+insert into horaire values(2,10,17);
+insert into horaire values(3,11,19);
+insert into horaire values(4,13,17);
+insert into horaire values(5,13,16);
 
-insert into pointRelais values(1,"2°20′55″ Est","48°51′12″ Nord",,)
+insert into pointRelais values(1,"2°20′55″ Est","48°51′12″ Nord",7);
+
+insert into horaireJour values("Lundi",1,1);
+insert into horaireJour values("Mardi",2,1);
+insert into horaireJour values("Mercredi",3,1);
+insert into horaireJour values("Jeudi",4,1);
+insert into horaireJour values("Vendredi",5,1);
+
+insert into commande values(1,19.45,"Patate , Tomate","2017-08-02 18:00:00",1,1);
+insert into commande values(2,60,20,"Patate , Carotte , Cougette , Fraise , Pomme","2017-08-15",1,2);
+insert into commande values(3,34,95,"Chou , Poire , Abricot , Pêche","2017-11-02",1,2);
+insert into commande values(4,45,60,"Tomate , Poivron , Courgette , Celeris","2018-01-06",1,3);
+insert into commande values(5,5.50,"Pomme , Banane","2018-02-13",1,1);
+insert into commande values(6,74.35,"Poivre , Epaule de boeuf , Loup , Goyave","2018-05-04",1,3);
+
+insert into parcelle values(1,"8 rue des moulins","BIO","4°28′59″ Ouest","48°23′59″ Nord",1);
+insert into parcelle values(2,"145 chemin des deportes","Traditionnel","5°26′59″ Est","43°31′41″ Nord",2);
+insert into parcelle values(3,"60 chemin du pas","Modere","1°26′37″ Est","43°36′15″ Nord",3);
+
+insert into rayon values(1,"Viande","");
+insert into rayon values(2,"Poisson","");
+insert into rayon values(3,"Fruit & Legume","");
+
+insert into produit values(1,"Boeuf","",1);
+insert into produit values(2,"Cochon","",1);
+insert into produit values(3,"Roche","",2);
+insert into produit values(4,"Mer","",2);
+insert into produit values(5,"Tomate","",3);
+insert into produit values(6,"Pomme de terre","",3);
+
+insert into variete values(1,"Epaule","",1);
+insert into variete values(2,"Entrecôte","",1);
+insert into variete values(3,"Lard","",2);
+insert into variete values(4,"Langue","",2);
+insert into variete values(5,"Rascasse","",3);
+insert into variete values(6,"Saran","",3);
+insert into variete values(7,"Requin","",4);
+insert into variete values(8,"Thon","",4);
+insert into variete values(9,"Coeur de boeuf","",5);
+insert into variete values(10,"Grappe","",5);
+insert into variete values(11,"Belle de fontenay","",6);
+insert into variete values(12,"Vitelotte","",6);
+
+insert into uniteMesure values(1,"M","metre");
+insert into uniteMesure values(2,"L","litre");
+insert into uniteMesure values(3,"Kg","kilo");
+insert into uniteMesure values(4,"Caisse","caisse de x");
+
+insert into production values(1,2);
+insert into production values(5,1);
+insert into production values(6,3);
+
+insert into employe values(1,"admin","admin","admin","admin");
+
+insert into lot values(1,0,100,50,2,"Tomate coeur de boeuf","2017-09-01",3,9,3);
+	
