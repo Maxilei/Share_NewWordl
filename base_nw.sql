@@ -42,7 +42,7 @@ CREATE TABLE `producteur`(`producID` INTEGER,`producValidation` BOOL,`utilisateu
 
 CREATE TABLE `commande`(`cmdID` INTEGER,`cmdPrix` FLOAT,`cmdDetail` VARCHAR(100),`cmdDate` DATE,`prID` INTEGER NOT NULL,`consID` INTEGER NOT NULL, foreign key (`prID`) references pointRelais(`prID`), foreign key (`consID`) references consommateur(`consID`),primary key(`cmdID`));
 
-CREATE TABLE `produit`(`prodID` INTEGER,`prodNom` VARCHAR(25),`prodDescription` VARCHAR(100),`prodImage` VARCHAR(50),`rayonId` INTEGER NOT NULL, foreign key (`rayonId`) references rayon(`rayonId`),primary key(`prodID`));
+CREATE TABLE `produit`(`prodID` INTEGER,`prodNom` VARCHAR(25),`prodImage` VARCHAR(50),`rayonId` INTEGER NOT NULL, foreign key (`rayonId`) references rayon(`rayonId`),primary key(`prodID`));
 
 CREATE TABLE `parcelle`(`parId` INTEGER,`parAdresse` VARCHAR(25),`parType` VARCHAR(25),`parLongitude` VARCHAR(25),`parLatitude` VARCHAR(25),`producID` INTEGER NOT NULL, foreign key (`producID`) references producteur(`producID`),primary key(`parId`));
 
