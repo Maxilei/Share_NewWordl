@@ -15,12 +15,12 @@ insert into utilisateur values(7,"2018-01-02","","Marseille","user7@gmail.com",0
 
 
 insert into donnesBancaire values(1,"1234567898745623","02/19","179","MasterCard",3);
-insert into donnesBancaire values(1,"1234567898765432","08/19","951","MasterCard",4);
-insert into donnesBancaire values(1,"9876543212345678","12/18","753","VPay",6);
-insert into donnesBancaire values(1,"9873216548527419","06/18","268","VPay",1);
-insert into donnesBancaire values(1,"1472583696385274","05/19","831","MasterCard",2);
-insert into donnesBancaire values(1,"9638527414566542","09/18","167","MasterCard",7);
-insert into donnesBancaire values(1,"9517384265789135","12/18","943","MasterCard",5);
+insert into donnesBancaire values(2,"1234567898765432","08/19","951","MasterCard",4);
+insert into donnesBancaire values(3,"9876543212345678","12/18","753","VPay",6);
+insert into donnesBancaire values(4,"9873216548527419","06/18","268","VPay",1);
+insert into donnesBancaire values(5,"1472583696385274","05/19","831","MasterCard",2);
+insert into donnesBancaire values(6,"9638527414566542","09/18","167","MasterCard",7);
+insert into donnesBancaire values(7,"9517384265789135","12/18","943","MasterCard",5);
 
 insert into producteur values(1,1,1);
 insert into producteur values(2,1,2);
@@ -45,9 +45,9 @@ insert into horaireJour values("Jeudi",4,1);
 insert into horaireJour values("Vendredi",5,1);
 
 insert into commande values(1,19.45,"Patate , Tomate","2017-08-02 18:00:00",1,1);
-insert into commande values(2,60,20,"Patate , Carotte , Cougette , Fraise , Pomme","2017-08-15",1,2);
-insert into commande values(3,34,95,"Chou , Poire , Abricot , Pêche","2017-11-02",1,2);
-insert into commande values(4,45,60,"Tomate , Poivron , Courgette , Celeris","2018-01-06",1,3);
+insert into commande values(2,60.20,"Patate , Carotte , Cougette , Fraise , Pomme","2017-08-15",1,2);
+insert into commande values(3,34.95,"Chou , Poire , Abricot , Pêche","2017-11-02",1,2);
+insert into commande values(4,45.60,"Tomate , Poivron , Courgette , Celeris","2018-01-06",1,3);
 insert into commande values(5,5.50,"Pomme , Banane","2018-02-13",1,1);
 insert into commande values(6,74.35,"Poivre , Epaule de boeuf , Loup , Goyave","2018-05-04",1,3);
 
@@ -84,9 +84,9 @@ insert into uniteMesure values(2,"L","litre");
 insert into uniteMesure values(3,"Kg","kilo");
 insert into uniteMesure values(4,"Caisse","caisse de x");
 
-insert into production values(1,2);
-insert into production values(5,1);
-insert into production values(6,3);
+insert into Production values(1,2);
+insert into Production values(5,1);
+insert into Production values(6,3);
 
 insert into employe values(1,"admin","admin","admin","admin");
 
