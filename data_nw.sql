@@ -36,7 +36,7 @@ insert into horaire values(3,11,19);
 insert into horaire values(4,13,17);
 insert into horaire values(5,13,16);
 
-insert into pointRelais values(1,"2°20′55″ Est","48°51′12″ Nord",7);
+insert into pointRelais values(1,"2°20'55'' Est","48°51'12'' Nord",7);
 
 insert into horaireJour values("Lundi",1,1);
 insert into horaireJour values("Mardi",2,1);
@@ -44,16 +44,16 @@ insert into horaireJour values("Mercredi",3,1);
 insert into horaireJour values("Jeudi",4,1);
 insert into horaireJour values("Vendredi",5,1);
 
-insert into commande values(1,19.45,"Patate , Tomate","2017-08-02 18:00:00",1,1);
-insert into commande values(2,60.20,"Patate , Carotte , Cougette , Fraise , Pomme","2017-08-15",1,2);
-insert into commande values(3,34.95,"Chou , Poire , Abricot , Pêche","2017-11-02",1,2);
-insert into commande values(4,45.60,"Tomate , Poivron , Courgette , Celeris","2018-01-06",1,3);
-insert into commande values(5,5.50,"Pomme , Banane","2018-02-13",1,1);
-insert into commande values(6,74.35,"Poivre , Epaule de boeuf , Loup , Goyave","2018-05-04",1,3);
+insert into commande values(1,19.45,"Patate , Tomate","2017-08-02","2018-03-27",1,1);
+insert into commande values(2,60.20,"Patate , Carotte , Cougette , Fraise , Pomme","2018-08-03","2018-03-27",1,2);
+insert into commande values(3,34.95,"Chou , Poire , Abricot , Pêche","2017-11-02","2018-03-28",1,2);
+insert into commande values(4,45.60,"Tomate , Poivron , Courgette , Celeris","2017-08-02","2018-03-27",1,3);
+insert into commande values(5,5.50,"Pomme , Banane","2018-02-13","2017-03-27",1,1);
+insert into commande values(6,74.35,"Poivre , Epaule de boeuf , Loup , Goyave","2018-05-04","2017-03-27",1,3);
 
-insert into parcelle values(1,"8 rue des moulins","BIO","4°28′59″ Ouest","48°23′59″ Nord",1);
-insert into parcelle values(2,"145 chemin des deportes","Traditionnel","5°26′59″ Est","43°31′41″ Nord",2);
-insert into parcelle values(3,"60 chemin du pas","Modere","1°26′37″ Est","43°36′15″ Nord",3);
+insert into parcelle values(1,"8 rue des moulins","BIO","4°28'59'' Ouest","48°23'59'' Nord",1);
+insert into parcelle values(2,"145 chemin des deportes","Traditionnel","5°26'59'' Est","43°31'41'' Nord",2);
+insert into parcelle values(3,"60 chemin du pas","Modere","1°26'37'' Est","43°36'15'' Nord",3);
 
 insert into rayon values(1,"Viande","");
 insert into rayon values(2,"Poisson","");
