@@ -1,6 +1,12 @@
-#include "produit.h"
+ #include "produit.h"
 
-produit::produit()
+Produit::PRoduit(QString idProd, QString libProd)
 {
+	idProduit = idProd;
+	libProduit = libProd;
 }
 
+QString Produit::versChaine()
+{
+	return libProduit;
+}
