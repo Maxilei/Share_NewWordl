@@ -35,14 +35,23 @@ insert into horaire values(2,10,17);
 insert into horaire values(3,11,19);
 insert into horaire values(4,13,17);
 insert into horaire values(5,13,16);
+insert into horaire values(6,8,12);
+insert into horaire values(7,14,18);
 
 insert into pointRelais values(1,"2°20'55'' Est","48°51'12'' Nord",7);
+insert into pointRelais values(2,"2°50'80'' Est","48°10'90'' Nord",2);
+insert into pointRelais values(2,"2°50'80'' Est","48°10'90'' Nord",2);
 
 insert into horaireJour values("Lundi",1,1);
 insert into horaireJour values("Mardi",2,1);
 insert into horaireJour values("Mercredi",3,1);
 insert into horaireJour values("Jeudi",4,1);
 insert into horaireJour values("Vendredi",5,1);
+insert into horaireJour values("Lundi",1,2);
+insert into horaireJour values("Mardi",2,2);
+insert into horaireJour values("Mercredi",6,2);
+insert into horaireJour values("Jeudi",4,2);
+insert into horaireJour values("Vendredi",5,2);
 
 insert into commande values(1,19.45,"Patate , Tomate","2017-08-02","2018-03-27",1,1);
 insert into commande values(2,60.20,"Patate , Carotte , Cougette , Fraise , Pomme","2018-08-03","2018-03-27",1,2);
