@@ -2,6 +2,7 @@
 #include "listeproduit.h"
 #include "ui_listeproduit.h"
 #include "produit.h"
+#include "colproduit.h"
 
 
 ListeProduit::ListeProduit(QWidget *parent) :
@@ -41,7 +42,8 @@ void ListeProduit::maListe()
     }
 }
 
-void listeproduit::chargerListeProduit(){
+colProduit listeproduit::chargerListeProduit(){
+    colProduit maListeDeProduit;
     QString requeteProd ="SELECT produit.prodID, prodNom, varNom, rayonNom, prodImage FROM variete inner JOIN produit ON variete.prodID = produit.prodID inner  JOIN rayon ON produit.rayonId=rayon.rayonId;";
     QSqlQuery maRequete (requeteProd);
     while (maRequete.next()){
@@ -52,7 +54,7 @@ void listeproduit::chargerListeProduit(){
         QString prodPhoto =maRequete.value('prodImage').toString();
 
         Produit newProduit(produitId,produitNom,varieteNom,rayonNom,prodPhoto);
-
+    maListeDeProduit.ajouterProduit(newProduit);
 
     }
 }
