@@ -23,7 +23,7 @@ CREATE TABLE `horaire`(`horId` INTEGER,`horFermeture` INTEGER,`horOuverture` INT
 
 CREATE TABLE `QS`(`qsID` INTEGER,`Question` VARCHAR(60),primary key(`qsID`));
 
-CREATE TABLE `utilisateur`(`utilisateurID` INTEGER,`userDateInscrip` DATE,`userDescription` VARCHAR(100),`userRepQuesSec` VARCHAR(25),`userMail` VARCHAR(25),`userNbdeTenta` INTEGER,`userMdp` VARCHAR(25),`userMailConf` BOOL,`userNom` VARCHAR(25),`userPrenom` VARCHAR(25),`userImage` VARCHAR(100),`userAdresse` VARCHAR(100),`userFacebook` VARCHAR(25),`userGoogle` VARCHAR(25),`userRole` VARCHAR(25),`qsID` INTEGER NOT NULL, foreign key (`qsID`) references QS(`qsID`),primary key(`utilisateurID`));
+CREATE TABLE `utilisateur`(`utilisateurID` INTEGER,`userDateInscrip` DATE,`userDescription` VARCHAR(100),`userRepQuesSec` VARCHAR(25),`userMail` VARCHAR(25),`userNbdeTenta` INTEGER,`userMdp` VARCHAR(25),`userMailConf` BOOL,`userNom` VARCHAR(50),`userPrenom` VARCHAR(50),`userImage` VARCHAR(255),`userAdresse` VARCHAR(25),`userFacebook` VARCHAR(25),`userGoogle` VARCHAR(25),`userRole` ENUM('Consommateur','Producteur','Point Relais'),`qsID` INTEGER NOT NULL, foreign key (`qsID`) references QS(`qsID`),primary key(`utilisateurID`));
 
 CREATE TABLE `donnesBancaire`(`bancId` INTEGER,`bancNum` VARCHAR(16),`bancDateExp` VARCHAR(5),`bancChiffreSc` VARCHAR(3),`bancTypeCarte` VARCHAR(20),`utilisateurID` INTEGER NOT NULL, foreign key (`utilisateurID`) references utilisateur(`utilisateurID`),primary key(`bancId`));
 
