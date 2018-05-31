@@ -23,7 +23,7 @@ CREATE TABLE `horaire`(`horId` INTEGER,`horFermeture` INTEGER,`horOuverture` INT
 
 CREATE TABLE `QS`(`qsID` INTEGER,`Question` VARCHAR(60),primary key(`qsID`));
 
-CREATE TABLE `utilisateur`(`utilisateurID` INTEGER,`userDateInscrip` DATE,`userDescription` VARCHAR(100),`userRepQuesSec` VARCHAR(25),`userMail` VARCHAR(25),`userNbdeTenta` INTEGER,`userMdp` VARCHAR(25),`userMailConf` BOOL,`userNom` VARCHAR(25),`userPrenom` VARCHAR(25),`userImage` VARCHAR(100),`userAdresse` VARCHAR(100),`userFacebook` VARCHAR(25),`userGoogle` VARCHAR(25),`userRole` VARCHAR(25),`qsID` INTEGER NOT NULL, foreign key (`qsID`) references QS(`qsID`),primary key(`utilisateurID`));
+CREATE TABLE `utilisateur`(`utilisateurID` INTEGER,`userDateInscrip` DATE,`userDescription` VARCHAR(100),`userRepQuesSec` VARCHAR(25),`userMail` VARCHAR(25),`userNbdeTenta` INTEGER,`userMdp` VARCHAR(25),`userMailConf` BOOL,`userNom` VARCHAR(25),`userPrenom` VARCHAR(25),`userImage` VARCHAR(25),`userAdresse` VARCHAR(25),`userFacebook` VARCHAR(25),`userGoogle` VARCHAR(25),`userRole` VARCHAR(25),`qsID` INTEGER NOT NULL, foreign key (`qsID`) references QS(`qsID`),primary key(`utilisateurID`));
 
 CREATE TABLE `donnesBancaire`(`bancId` INTEGER,`bancNum` VARCHAR(16),`bancDateExp` VARCHAR(5),`bancChiffreSc` VARCHAR(3),`bancTypeCarte` VARCHAR(20),`utilisateurID` INTEGER NOT NULL, foreign key (`utilisateurID`) references utilisateur(`utilisateurID`),primary key(`bancId`));
 
@@ -39,7 +39,7 @@ CREATE TABLE `consommateur`(`consID` INTEGER,`utilisateurID` INTEGER NOT NULL, f
 
 CREATE TABLE `producteur`(`producID` INTEGER,`producValidation` BOOL,`utilisateurID` INTEGER NOT NULL, foreign key (`utilisateurID`) references utilisateur(`utilisateurID`),primary key(`producID`));
 
-CREATE TABLE `commande`(`cmdID` INTEGER,`cmdPrix` FLOAT,`cmdDetail` VARCHAR(100),`cmdDate` DATE,`cmdDateLivraison` DATE,`prID` INTEGER NOT NULL,`consID` INTEGER NOT NULL, foreign key (`prID`) references pointRelais(`prID`), foreign key (`consID`) references consommateur(`consID`),primary key(`cmdID`));
+CREATE TABLE `commande`(`cmdID` INTEGER,`cmdPrix` FLOAT,`cmdDetail` VARCHAR(100),`cmdDate` DATE,`prID` INTEGER NOT NULL,`consID` INTEGER NOT NULL, foreign key (`prID`) references pointRelais(`prID`), foreign key (`consID`) references consommateur(`consID`),primary key(`cmdID`));
 
 CREATE TABLE `produit`(`prodID` INTEGER,`prodNom` VARCHAR(25),`prodImage` VARCHAR(50),`rayonId` INTEGER NOT NULL, foreign key (`rayonId`) references rayon(`rayonId`),primary key(`prodID`));
 
@@ -53,6 +53,7 @@ CREATE TABLE `horaireJour`(`libJour` VARCHAR(8),`horId` INTEGER NOT NULL,`prID` 
 
 CREATE TABLE `lot`(`lotID` INTEGER,`lotQteAcheter` INTEGER,`lotPrix` FLOAT,`lotQteIni` INTEGER,`lotPU` FLOAT,`lotDescription` VARCHAR(250),`lotDLC` DATE,`umId` INTEGER NOT NULL,`varId` INTEGER NOT NULL,`producID` INTEGER NOT NULL, foreign key (`umId`) references uniteMesure(`umId`), foreign key (`varId`) references variete(`varId`), foreign key (`producID`) references producteur(`producID`),primary key(`lotID`));
 
-CREATE TABLE `LDC`(`qte` INTEGER,`status` ENUM('Commandé','Preparé','Livré au point relais','Desservi au client'),`cmdID` INTEGER NOT NULL,`lotID` INTEGER NOT NULL,`prID` INTEGER NOT NULL,`producID` INTEGER NOT NULL, foreign key (`cmdID`) references commande(`cmdID`), foreign key (`lotID`) references lot(`lotID`), foreign key (`prID`) references pointRelais(`prID`), foreign key (`producID`) references producteur(`producID`),primary key(`cmdID`,`lotID`,`prID`,`producID`));
+CREATE TABLE `LDC`(`qte` INTEGER,`status` ENUM('Commandé','Preparé','Livré au point relais','Desservi au client'),`cmdID` INTEGER NOT NULL,`lotID` INTEGER NOT NULL,`prID` INTEGER NOT NULL, foreign key (`cmdID`) references commande(`cmdID`), foreign key (`lotID`) references lot(`lotID`), foreign key (`prID`) references pointRelais(`prID`),primary key(`cmdID`,`lotID`,`prID`));
+
 
  source data_nw.sql;
