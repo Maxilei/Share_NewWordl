@@ -93,5 +93,10 @@ insert into employe values(1,"admin","admin","admin","admin");
 insert into lot values(1,0,100,50,2,"Tomate coeur de boeuf","2017-09-01",3,9,3);
 insert into lot values(2,0,150,100,1.5,"Patate Vitelotte","2018-01-08",3,12,1);
 
-insert into LDC values(10,"Commandé",1,1,1);
-insert into LDC values(10,"Commandé",1,2,1);
+insert into status values(1,"commandé");
+insert into status values(2,"preparé");
+insert into status values(3,"livré au point relais");
+insert into status values(4,"recuperé par le client");
+
+insert into LDC values(10,1,1,1,1);
+insert into LDC values(10,1,1,2,1);

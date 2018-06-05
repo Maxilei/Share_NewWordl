@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS horaireJour;
 DROP TABLE IF EXISTS variete;
 DROP TABLE IF EXISTS produit;
 DROP TABLE IF EXISTS lot;
+DROP TABLE IF EXISTS status;
 DROP TABLE IF EXISTS LDC;
 DROP TABLE IF EXISTS Production;
 SET FOREIGN_KEY_CHECKS = 1;
@@ -32,6 +33,8 @@ CREATE TABLE `rayon`(`rayonId` INTEGER,`rayonNom` VARCHAR(25),`rayonImage` VARCH
 CREATE TABLE `employe`(`employeID` INTEGER,`employePassword` VARCHAR(25),`employeNom` VARCHAR(25),`employePrenom` VARCHAR(25),`employeLogin` VARCHAR(25),primary key(`employeID`));
 
 CREATE TABLE `uniteMesure`(`umId` INTEGER,`umNom` VARCHAR(10),`umDescription` VARCHAR(50),primary key(`umId`));
+
+CREATE TABLE `status`(`idStatus` INTEGER,`libStatus` VARCHAR(25),primary key(`idStatus`));
 
 CREATE TABLE `pointRelais`(`prID` INTEGER,`prLongitude` VARCHAR(50),`prLatitude` VARCHAR(50),`utilisateurID` INTEGER NOT NULL, foreign key (`utilisateurID`) references utilisateur(`utilisateurID`),primary key(`prID`));
 
@@ -53,7 +56,8 @@ CREATE TABLE `horaireJour`(`libJour` VARCHAR(8),`horId` INTEGER NOT NULL,`prID` 
 
 CREATE TABLE `lot`(`lotID` INTEGER,`lotQteAcheter` INTEGER,`lotPrix` FLOAT,`lotQteIni` INTEGER,`lotPU` FLOAT,`lotDescription` VARCHAR(250),`lotDLC` DATE,`umId` INTEGER NOT NULL,`varId` INTEGER NOT NULL,`producID` INTEGER NOT NULL, foreign key (`umId`) references uniteMesure(`umId`), foreign key (`varId`) references variete(`varId`), foreign key (`producID`) references producteur(`producID`),primary key(`lotID`));
 
-CREATE TABLE `LDC`(`qte` INTEGER,`status` ENUM('Commandé','Preparé','Livré au point relais','Desservi au client'),`cmdID` INTEGER NOT NULL,`lotID` INTEGER NOT NULL,`prID` INTEGER NOT NULL, foreign key (`cmdID`) references commande(`cmdID`), foreign key (`lotID`) references lot(`lotID`), foreign key (`prID`) references pointRelais(`prID`),primary key(`cmdID`,`lotID`,`prID`));
+CREATE TABLE `LDC`(`qte` INTEGER,`cmdID` INTEGER NOT NULL,`lotID` INTEGER NOT NULL,`prID` INTEGER NOT NULL,`idStatus` INTEGER NOT NULL, foreign key (`cmdID`) references commande(`cmdID`), foreign key (`lotID`) references lot(`lotID`), foreign key (`prID`) references pointRelais(`prID`), foreign key (`idStatus`) references status(`idStatus`),primary key(`cmdID`,`lotID`,`prID`));
+
 
 
  source data_nw.sql;
