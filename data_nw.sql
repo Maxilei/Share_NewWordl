@@ -1,8 +1,8 @@
 insert into QS values(1,"Quel le nom de votre animal de compagnie");
-insert into QS values(2,"Quel est le nom de votre collège");
-insert into QS values(3,"Votre jeu vidéo favorie");
+insert into QS values(2,"Quel est le nom de votre college");
+insert into QS values(3,"Votre jeu video favorie");
 insert into QS values(4,"Le nom de votre meilleur ami(e)");
-insert into QS values(5,"Le nom de jeune fille de votre mère");
+insert into QS values(5,"Le nom de jeune fille de votre mere");
 insert into QS values(6,"Votre ville de naissance");
 
 insert into utilisateur values(1,"2013-08-21","","Paris","user1@gmail.com",0,"psw1",1,"Krouger","Andy","","8 rue du bac","","","Prod",6);
@@ -24,7 +24,7 @@ insert into donnesBancaire values(7,"9517384265789135","12/18","943","MasterCard
 
 insert into producteur values(1,1,1);
 insert into producteur values(2,1,2);
-insert into producteur values(3,1,5);
+insert into producteur values(3,0,5);
 
 insert into consommateur values(1,3);
 insert into consommateur values(2,4);
