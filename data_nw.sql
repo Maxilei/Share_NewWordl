@@ -55,29 +55,29 @@ insert into parcelle values(1,"8 rue des moulins","BIO","4°28'59'' Ouest","48°
 insert into parcelle values(2,"145 chemin des deportes","Traditionnel","5°26'59'' Est","43°31'41'' Nord",2);
 insert into parcelle values(3,"60 chemin du pas","Modere","1°26'37'' Est","43°36'15'' Nord",3);
 
-insert into rayon values(1,"Viande","");
-insert into rayon values(2,"Poisson","");
-insert into rayon values(3,"Fruit & Legume","");
+insert into rayon values(1,"Viande","",1);
+insert into rayon values(2,"Poisson","",1);
+insert into rayon values(3,"Fruit & Legume","",1);
 
-insert into produit values(1,"Boeuf","",1);
-insert into produit values(2,"Cochon","",1);
-insert into produit values(3,"Roche","",2);
-insert into produit values(4,"Mer","",2);
-insert into produit values(5,"Tomate","",3);
-insert into produit values(6,"Pomme de terre","",3);
+insert into produit values(1,"Boeuf","",1,1);
+insert into produit values(2,"Cochon","",1,1);
+insert into produit values(3,"Roche","",1,2);
+insert into produit values(4,"Mer","",1,2);
+insert into produit values(5,"Tomate","",1,3);
+insert into produit values(6,"Pomme de terre","",1,3);
 
-insert into variete values(1,"Epaule","",1);
-insert into variete values(2,"Entrecôte","",1);
-insert into variete values(3,"Lard","",2);
-insert into variete values(4,"Langue","",2);
-insert into variete values(5,"Rascasse","",3);
-insert into variete values(6,"Saran","",3);
-insert into variete values(7,"Requin","",4);
-insert into variete values(8,"Thon","",4);
-insert into variete values(9,"Coeur de boeuf","",5);
-insert into variete values(10,"Grappe","",5);
-insert into variete values(11,"Belle de fontenay","",6);
-insert into variete values(12,"Vitelotte","",6);
+insert into variete values(1,"Epaule","","",1,1);
+insert into variete values(2,"Entrecôte","","",1,1);
+insert into variete values(3,"Lard","","",1,2);
+insert into variete values(4,"Langue","","",1,2);
+insert into variete values(5,"Rascasse","","",1,3);
+insert into variete values(6,"Saran","","",1,3);
+insert into variete values(7,"Requin","","",1,4);
+insert into variete values(8,"Thon","","",1,4);
+insert into variete values(9,"Coeur de boeuf","","",1,5);
+insert into variete values(10,"Grappe","","",1,5);
+insert into variete values(11,"Belle de fontenay","","",1,6);
+insert into variete values(12,"Vitelotte","",	"",1,6);
 
 insert into uniteMesure values(1,"M","metre");
 insert into uniteMesure values(2,"L","litre");
@@ -99,4 +99,4 @@ insert into status values(3,"livré au point relais");
 insert into status values(4,"recuperé par le client");
 
 insert into LDC values(10,1,1,1,1);
-insert into LDC values(10,1,1,2,1);
+insert into LDC values(10,1,2,1,1);
