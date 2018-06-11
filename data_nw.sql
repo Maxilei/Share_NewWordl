@@ -99,4 +99,4 @@ insert into status values(3,"livré au point relais");
 insert into status values(4,"recuperé par le client");
 
 insert into LDC values(10,1,1,1,1);
-insert into LDC values(10,1,1,2,1);
+insert into LDC values(10,1,2,1,1);

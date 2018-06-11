@@ -1,7 +1,5 @@
-<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<input type="text" id="idAdresse" name="adresse" class="ui-autocomplete-input" autocomplete="off" value="" required="" placeholder="Adresse">
+<input type="text" id="idAdresse" name="adresse" class="ui-autocomplete-input" autocomplete="off" value="" placeholder="Adresse">
 
 <script>
 //cette fonction se lance quand la Adresse change

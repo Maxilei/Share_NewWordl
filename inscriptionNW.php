@@ -4,108 +4,51 @@
 <head>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-     <script type="text/javascript" src="js/monJS.js"></script>
-        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+   <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips --> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
 
-    <script type="text/javascript" src="js/tether.min.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <!--<script type="text/javascript" src="js/tether.min.js"></script>-->
+
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js">
+    </script>   -->
+    
+     <script type="text/javascript" src="js/monJS.js"></script>
    
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
 
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
      <!-- Template styles -->
-    <style rel="stylesheet">
-        /* TEMPLATE STYLES */
-        /* Necessary for full page carousel*/
+    
+    <link rel="stylesheet" type="text/css" href="newWorld.css">
 
-        html,
-        body {
-            height: 100%;
-        }
-        /* Navigation*/
 
-        .navbar {
-            background-color: #304a74;
-        }
+<script>
+function validerMdp() {
+    if (document.monForm.password.value != document.monForm.passverif.value) {
+        document.getElementById("msg").innerHTML = "les deux mots de passe doivent être identiques";
+        return false;
+    }
 
-        .top-nav-collapse {
-            background-color: #304a74;
-        }
-
-        footer.page-footer {
-            background-color: #304a74;
-        }
-
-        @media only screen and (max-width: 768px) {
-            .navbar {
-                background-color: #304a74;
-            }
-        }
-
-        .scrolling-navbar {
-            -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
-            -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
-            transition: background .5s ease-in-out, padding .5s ease-in-out;
-        }
-        /* Carousel*/
-
-        .carousel {
-            height: 50%;
-        }
-
-        @media (max-width: 776px) {
-            .carousel {
-                height: 100%;
-            }
-        }
-        .card {
-            margin-left: 35%;
-        }
-        .carousel-item,
-        .active {
-            height: 100%;
-        }
-
-        .carousel-inner {
-            height: 100%;
-        }
-        /*Caption*/
-
-        .flex-center {
-            color: #fff;
-        }
-        .navbar .btn-group .dropdown-menu a:hover {
-            color: #000 !important;
-        }
-        .navbar .btn-group .dropdown-menu a:active {
-            color: #fff !important;
-        }
-    </style>
-<script>function validerMdp() {
-if (document.monForm.password.value != document.monForm.passverif.value) {
-document.getElementById("msg").innerHTML = "les deux mots de passe doivent être identiques";
-
-return false;
-
+    if (document.monForm.password.value.length < 6) {
+        document.getElementById("msg").innerHTML = "le mot de passe doit comporter au moins 6 caractères";
+        return false;
+    }
+    return true;
 }
 
-if (document.monForm.password.value.length < 6) {
-
-document.getElementById("msg").innerHTML = "le mot de passe doit comporter au moins 6 caractères";
-
-return false;
-
-}
-
-return true;
-
-}
 </script>
 </head>
 <body>
@@ -115,42 +58,33 @@ if (isset($_SESSION['userName'])) {
 	unset($_SESSION['userName']);
 }
 ?>
-<!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">New World</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Acheter <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Produire</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Distribuer</a>
-                    </li>
-                        
-                </ul>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
-                </form>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Connexion</a>  
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
- <!--/.Navbar-->
 
+    <!--Navbar-->
+<?php   
+    include 'menu.php'; 
+    require_once "connectBase.php";
+
+function execReq($req) {
+    global $cnx;
+    if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {
+        echo ("Connexion impossible".$cnx->connect_error());
+        return false;   
+    }
+    $result = $cnx->query($req); 
+    //or die("La requête \"$req\" a échoué : ".$cnx->error);
+    // on ferme la connexion
+    mysqli_close($cnx);
+    return $result;
+}
+
+?>
+    <!--/.Navbar-->
+
+<script type="text/javascript">
+    $("#formCheck").hide();
+</script>
 <br><br><br>
-<form method="GET" action="inscriptionNW.php" name="monForm" onsubmit="return validerMdp()">
+<form method="POST" action="traitementInscription.php" name="monForm" id="myFrom" >
 	<div class="card col-xs-12 text-center col-lg-3 offset-1" id="Changement">
 		<h2>Inscription</h2>
 			<label for="userName">Nom</label><input type="text" name="userName"><br>
@@ -158,18 +92,17 @@ if (isset($_SESSION['userName'])) {
 			<label for="mail">Adresse mail</label><input type="email" name="mail"><br>
             <label for="adresse">Adress</label><?php include 'genereInputAdresse.php';?>
             <label for="QS">Question secrète</label><select name="QS" id="QS"><!-- Affichage des questions avec une requete sql -->
-            <?
-                require_once "connectBase.php";
-                if (($cnx = connectionBDD()) === false) exit;
-                $resultat = $cnx->query('select qsID,Question from QS');
-                if(!$resultat){echo "erreur requete"; exit;}
-                while($données=mysql_fetch_assoc($resultat))
-                {
-            
-                ?><option value=<? $données['qsID'] ?>><?$données['Question']?></option><?
-                    
-                }
-                mysql_close($cnx);
+            <?php
+            global $cnx;
+            if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {
+                echo ("Connexion impossible".$cnx->connect_error());
+            }
+            $req = "SELECT Question FROM QS";
+            $result = execReq($req);
+            $question[] = array();
+            while ($row = $result->fetch_assoc()) {
+                    echo "<option name='question'>".$row['Question']."</option>";
+            }
             ?>
             </select><br>
             <label for="repQuesSec">Reponse question secrète</label><input type="text" name="repQuesSec"><br>
@@ -179,14 +112,16 @@ if (isset($_SESSION['userName'])) {
                 Consommateur<input type="radio" name="role" value="Consommateur"><br>
                 Point relais  <input type="radio" name="role" value="Point relais"><br>
             </div>
-			<label for="password" >Mot de passe</label><input type="password" name="password"><br>
-			<label for="passverif">Vérification du mot de passe</label><input type="password" name="passverif"><br>
-			<button type="submit" name="btnIns" style="background:none; border:0px;">Valider</button>
+			<label for="password" >Mot de passe</label><input type="password" name="password" id="password"><br>
+			<label for="passverif">Vérification du mot de passe</label><input type="password" name="passverif" id="passverif">
+            <div id="wrongverif" style="color:red; font-family: bold; visibility:hidden" >Mots de passes différents. </div><br>
+			<input type="submit" name="btnIns" id="formCheck" value="Valider" style="background:none; border:0px;"></input>
 			<a onclick="Connexion()">Déjà inscrit?</a>
 	
 	</div>
 	<div id="msg"></div>
 </form>
+    <script type="text/javascript" src="validate.js"></script>
 
 <!--Footer-->
 <footer class="page-footer center-on-small-only">
@@ -321,11 +256,11 @@ class userName {
 	}
 	public function toBase() {
 		require_once "connectBase.php";
-		
+		$today = date("Y-m-d"); 
 		if (($cnx = connectionBDD()) === false) exit;
 			
-		$req = "INSERT INTO `utilisateur`(`userMail`,`userNom`,`userMdp`,`userAdresse`,`userRole`,`userRepQuesSec`) 
-		VALUES ('$this->mail','$this->userName','$this->password','$this->adresse','$this->role','$this->repQuesSec');";
+		$req = "INSERT INTO `utilisateur`(`userDateInscrip`,`userDescription`,`userRepQuesSec`,`userMail`,`userNbTenta`,`userMdp`,`userMailConf`,`userNom`,`userAdresse`,`userRole`) 
+		VALUES (".$today.",'','$this->repQuesSec','$this->mail','0','$this->password','0','$this->userName','$this->userName','$this->adresse','$this->role');";
 			
 		$result = $cnx->query($req) or die("La requête \"$req\" a échoué : ".$cnx->error);	
 		
@@ -340,11 +275,9 @@ function mailVerif() {
 		mail($destinataire,$sujet,$message);
 		echo "Mail envoyé";
 	}
-    echo"1";
 		if(!isset($_REQUEST['btnIns'])) exit;
 
 	echo "<div class=\"centreLeft box1 border2 size4a bg1 border2 overAuto\">";	
-    echo"2";
 	// récupération des données du formulaire
 	$userName = $_REQUEST["userName"];
 	$mail = $_REQUEST["mail"];
@@ -370,6 +303,5 @@ function mailVerif() {
     <script>
         new WOW().init();
     </script>
-
 </body>
 </html>

@@ -1,12 +1,12 @@
 <?php
 function connectionBDD($noBase=false) {
-	$user = "root";
+	$user = "maxime";
 	$pwd = "passf203";
 	$serveur = "localhost";
 	if ($noBase === false)
-		$base = "dbtjNewWorld";
+		$base = "dbNewWorld";
 	else
-		$base = "dbtjNewWorld";
+		$base = "dbNewWorld";
 
 	// connection à la base
 	if (!($cnx = mysqli_connect($serveur, $user, $pwd, $base))) {
