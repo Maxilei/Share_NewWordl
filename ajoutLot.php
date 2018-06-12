@@ -1,3 +1,6 @@
+<?php
+require_once "connectBase.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,73 +96,52 @@
 </head>
 <body>
     <!--Navbar-->
-    <nav  id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">New World</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Acheter <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ajoutLot.php">Produire</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Distribuer</a>
-                    </li>
-                        
-                </ul>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
-                </form>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="inscriptionNW.php">Connexion</a>  
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<?php
+    include 'menu.php';
+?>
     <!--/.Navbar-->
+<?php 
+
+function execReq($req) {
+    global $cnx;
+    if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {
+        echo ("Connexion impossible".$cnx->connect_error());
+        return false;   
+    }
+    $result = $cnx->query($req); 
+    //or die("La requête \"$req\" a échoué : ".$cnx->error);
+    // on ferme la connexion
+    mysqli_close($cnx);
+    return $result;
+}
+
+
+?>
+
+
     <br><br><br>
-    <form class="form-inline" method="POST" action="ajoutLot.php" name="lotForm">
+    <form class="form-inline" method="POST" action="traitementLot.php" id="lotForm">
         <div class="container">
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
                 <div class="col-lg-2 col-md-2 col-xs-2">Mode de Production</div>
                 <div class="form-control col-lg-8 col-md-8 col-xs-8">
-                    <select id="modeProd" class="browser-default">
-                        <?
-                            require_once "connectBase.php";
-                            if (($cnx = connectionBDD()) === false) exit;
-                            $resultat = $cnx->query('select parType from parcelle');
-
-                            if(!$resultat){echo "erreur requete"; exit;}
-                            while($données==mysql_fetch_assoc($resultat))
-                            {
-                                echo "<option value=".$données['parType'].">".$données['parType']."</option>";
-                            }
-                            mysql_close($cnx);
-                        ?> 
+                    <select class="browser-default" name="modeProd" id="modeProd">
+                    <?php
+                    global $cnx;
+                    $req = "SELECT parType FROM parcelle";
+                    $result = execReq($req);
+                    print_r($result);
+                    while ($row = $result->fetch_assoc()) {
+                            echo "<option name='".$row['parType']."'>".$row['parType']."</option>";
+                    }
+                    ?>
                     </select>
                 </div>
             </div>
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
                 <div class="col-lg-2 col-md-12 col-xs-12">Prix Unitaire</div>
                 <div class="form-control col-lg-2 col-md-3 col-xs-3">
-                    <input type="text" name="PU">
-                </div>
-                <div class="form-control col-lg-2 col-md-3 col-xs-3">
-                    <p>Prix le plus petit:</p>
-                </div>
-                <div class="form-control col-lg-2 col-md-3 col-xs-3">
-                    <p>Prix Moyen:
-                </div>
-                <div class="form-control col-lg-2 col-md-3 col-xs-3">
-                    <p>Prix le plus élevé:</p>
+                    <input type="number" name="PU">
                 </div>
             </div>
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
@@ -168,45 +150,64 @@
                     <input type="text" name="Qte">
                 </div>
                 <div class="form-control col-lg-2 col-md-2 col-xs-2">
-                    <select id="unité">
-                        <?
-                            require_once "connectBase.php";
-                            if (($cnx = connectionBDD()) === false) exit;
-                            $resultat = $cnx->query('select umNom from uniteMesure');
-                            if(!$resultat){echo "erreur requete"; exit;}
-                           /* while($données=mysql_fetch_assoc($resultat))
-                            {
-                            }*/
-                            var_dump($resultat);
-                            mysql_close($cnx);
-                        ?> 
+                   <select id="uniteMesure" name="unite">
+                        <?php
+                        global $cnx;
+                        $req = "SELECT umDescription FROM uniteMesure";
+                        $result = execReq($req);
+                        print_r($result);
+                        while ($row = $result->fetch_assoc()) {
+                                echo "<option name='".$row['umDescription']."'>".$row['umDescription']."</option>";
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
                 <div class="col-lg-2 col-md-6 col-xs-6">Rayon</div>
                 <div class="form-control col-lg-2 col-md-6 col-xs-6">
-                    <select id="rayon"></select>
+                    <select id="rayon" name="rayon">
+                        <?php
+                        $req = "SELECT rayonNom FROM rayon";
+                        $result = execReq($req);
+                        print_r($result);
+                        while ($row = $result->fetch_assoc()) {
+                                echo "<option name='".$row['rayonNom']."'>".$row['rayonNom']."</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
-                <div class="col-lg-2 col-md-6 col-xs-6" name="categ">Categorie</div>
+                <div class="col-lg-2 col-md-6 col-xs-6" >Variété</div>
                 <div class="form-control col-lg-2 col-md-6 col-xs-6">
-                    <select id="categ" name="categ"></select>
+                    <select id="variete" name="variete">
+                        <?php
+                        $req = "SELECT varNom FROM variete";
+                        $result = execReq($req);
+                        print_r($result);
+                        while ($row = $result->fetch_assoc()) {
+                                echo "<option name='".$row['varNom']."'>".$row['varNom']."</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
-                <div class="col-lg-2 col-md-6 col-xs-6" name="prod">Produit</div>
+                <div class="col-lg-2 col-md-6 col-xs-6" >Produit</div>
                 <div class="form-control col-lg-2 col-md-6 col-xs-6">
-                    <select id="variete" name="prod"></select>
+                    <select id="produit" name="produit">
+                        <?php
+                        $req = "SELECT prodNom FROM produit";
+                        $result = execReq($req);
+                        print_r($result);
+                        while ($row = $result->fetch_assoc()) {
+                                echo "<option name='".$row['prodNom']."'>".$row['prodNom']."</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
             </div>
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
-                <div class="col-lg-2 col-md-2 col-xs-2">Date Récolte</div>
+                <div class="col-lg-2 col-md-2 col-xs-2">Date limite de consommation</div>
                 <div class="form-control col-lg-8 col-md-8 col-xs-8">
-                    <input type="text" name="dateRe" placeholder="AAAA-MM-JJ">
-                </div>
-            </div>
-            <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
-                <div class="col-lg-2 col-md-2 col-xs-2">Date limite de consomation</div>
-                <div class="form-control col-lg-8 col-md-8 col-xs-8">
-                    <input type="text" name="dateLimi" placeholder="AAAA-MM-JJ">
+                    <input type="text" name="dateLDC" placeholder="AAAA-MM-JJ">
                 </div>
             </div>
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
@@ -214,62 +215,18 @@
                     <input type="text" name="description" placeholder="Description">
                 </div>
             </div>
+            <input type="submit" name="ajouter" value="Ajouter Lot">
         </div>
     </form>
      <!--Footer-->
-    <footer class="page-footer center-on-small-only">
-
-        <!--Footer Links-->
-        <div class="container-fluid">
-            <div class="row">
-                <hr class="w-100 clearfix d-sm-none">
-
-                <!--Second column-->
-                <div class="col-lg-2 col-md-4 offset-md-2">
-                    <h5 class="title font-bold mt-3 mb-4">Participer</h5>
-                    <ul>
-                        <li><a href="#!">Proposer des produits</a></li>
-                        <li><a href="#!">Transformer</a></li>
-                        <li><a href="#!">Devenir client</a></li>
-                        <li><a href="#!">Distribuer</a></li>
-                    </ul>
-                </div>
-                <!--/.Second column-->
-
-                <hr class="w-100 clearfix d-sm-none">
-
-                <!--Third column-->
-                <div class="col-lg-2 col-md-4 offset-md-2">
-                    <h5 class="title font-bold mt-3 mb-4">Comprendre</h5>
-                    <ul>
-                        <li><a href="#!">Savoir faire local</a></li>
-                        <li><a href="#!">Reduire les transports</a></li>
-                        <li><a href="#!">Produit frais</a></li>
-                        <li><a href="#!">Qualité</a></li>
-                    </ul>
-                </div>
-                <!--/.Third column-->
-
-                <hr class="w-100 clearfix d-sm-none">
-
-                <!--Fourth column-->
-                <div class="col-lg-2 col-md-4 offset-md-2">
-                    <h5 class="title font-bold mt-3 mb-4">Communiquer</h5>
-                    <ul>
-                        <li><a href="#!">Les secrets des producteurs</a></li>
-                        <li><a href="#!">Le savoir faire des artisans</a></li>
-                        <li><a href="#!">Les recettes de grand-mère</a></li>
-                        <li><a href="#!">La conservation des aliments</a></li>
-                        <li><a href="nousContacter.php">Nous Contacter</a></li>
-                    </ul>
-                </div>
-                <!--/.Fourth column-->
-            </div>            
-        </div>
-    </footer>
+<?php
+    include 'footer.php';
+?>
     <!--/.Footer-->
 
 </body>
+    
+    <script type="text/javascript" src="'validate.js"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/tether.min.js"></script>

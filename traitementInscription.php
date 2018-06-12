@@ -17,27 +17,66 @@ function execReq($req) {
 
 
 if (isset($_POST)) {
-	$prenom = $_POST['userSurname'];
-	$nom = $_POST['userName'];
 	$mail = $_POST['mail'];
-	$adresse = $_POST['adresse'];
-	$rue = $_POST['rue'];
-	$cp = $_POST['cp'];
-	$ville = $_POST['ville'];
-	$latitude = $_POST['latitude'];
-	$longitude = $_POST['longitude'];
-	$QS = $_POST['QS'];
-	$repQS = $_POST['repQuesSec'];
-	$role = $_POST['role'];
-	$password = $_POST['password'];
-	$today = date("Y-m-d"); 
+
+	$reqCheckMail = "SELECT COUNT(utilisateurID) as nbMail FROM utilisateur WHERE userMail = '".$mail."';";
+	$checkMail = execReq($reqCheckMail)->fetch_assoc()['nbMail'];
+	echo "Check Mail ".$checkMail;
+	if ($checkMail >= 1 ) {
+		header('Location:inscriptionNW.php?mailCheck=1');
+	}else{
+
+		$prenom = $_POST['userSurname'];
+		$nom = $_POST['userName'];
+		$adresse = $_POST['adresse'];
+		$rue = $_POST['rue'];
+		$cp = $_POST['cp'];
+		$ville = $_POST['ville'];
+		$latitude = $_POST['latitude'];
+		$longitude = $_POST['longitude'];
+		$QS = $_POST['QS'];
+		$repQS = $_POST['repQuesSec'];
+		$role = $_POST['role'];
+		$password = $_POST['password'];
+		$today = date("Y-m-d"); 
 
 
-	$req = "INSERT INTO `utilisateur`(`userDateInscrip`,`userDescription`,`userRepQuesSec`,`userMail`,`userNbTenta`,`userMdp`,`userMailConf`,`userNom`,`userPrenom`,`userImage`,`userImage`,`userAdresse`,`userFacebook`,`userGoogle`,`userRole`) 
-	VALUES (".$today.","",".$repQS.",".$mail.",1,".$password.",0,".$nom.",".$prenom.","",".$adresse.","","",".$role.");";
+		$reqQsId = "SELECT qsID FROM QS WHERE Question = '".$QS."'";
+		$qsID = execReq($reqQsId)->fetch_assoc()['qsID'];
 
-	execReq($req);
-	
+		$reqIdMax = "SELECT max(utilisateurID)+1 as idMax FROM utilisateur";
+		$idMax = execReq($reqIdMax)->fetch_assoc()['idMax'];
+		$_POST['id']= $idMax ;
+		echo "<br>";
+
+		$req = " INSERT INTO `utilisateur`(`utilisateurID`,`userDateInscrip`,`userDescription`,`userRepQuesSec`,`userMail`,`userNbdeTenta`,`userMdp`,`userMailConf`,`userNom`,`userPrenom`,`userImage`,`userAdresse`,`userFacebook`,`userGoogle`,`userRole`,`qsID`) 
+		VALUES (".$idMax.",'".$today."','','".$repQS."','".$mail."',1,'".$password."',0,'".$nom."','".$prenom."','','".$adresse."','','','".$role."','".$qsID."');";
+		execReq($req);
+		echo $req;
+
+		switch ($role) {
+			case 'Producteur':
+				$reqIdMaxProd = "SELECT max(producID)+1 as idMaxProd FROM producteur";
+				$idMaxProd = execReq($reqIdMaxProd)->fetch_assoc()['idMaxProd'];
+
+				$reqProd = "INSERT INTO `producteur`(`producID`,`producValidation`,`utilisateurID`) VALUES(".$idMaxProd.",0,".$idMax.");";
+				execReq($reqProd);
+				echo($reqProd);
+
+				break;
+			case 'Point relais':
+				$reqIdMaxPr = "SELECT max(prID)+1 as idMaxPr FROM pointRelais";
+				$idMaxPr = execReq($reqIdMaxPr)->fetch_assoc()['idMaxPr'];
+
+				$reqPr = "INSERT INTO `pointRelais`(`prID`,`prLongitude`,`prLatitude`,`utilisateurID`) VALUES(".$idMaxPr.",".$longitude.",".$latitude.",".$idMax.");"; 
+				execReq($reqPr);
+				echo($reqPr);
+				break;
+		}
+	//	header("index.php");
+
+		include('mailConfirm.php');
+	}
 }
 
 ?>

@@ -85,3 +85,98 @@ $("#myFrom").validate({
 	}
 
 });
+$("#formConnexion").validate({
+	rules:{
+		mail: {
+			required:true,
+			email:true
+		},
+		password:{
+			required:true,
+			minlength:6
+		}
+	},
+	messages:{
+		mail: {
+			required:"You must fill this field.",
+			email:true
+		},
+		password:{
+			required:"You must fill this field.",
+			minlength:"You need at least 6 characters."
+		}
+	},
+	submitHandler: function(form) {
+    		form.submit();
+    	}
+	}
+
+});
+$("#lotForm").validate({
+	rules:{
+		modeProd:{
+			required:true,
+		},
+		PU:{
+			required:true,
+		},
+		Qte:{
+			required:true
+		},
+		unite: {
+			required:true,
+		},
+		rayon:{
+			required:true,
+		},
+		variete:{
+			required:true
+		},
+		produit:{
+			required:true,
+		},
+		dateLDC:{
+			required:true,
+			date:true
+		},
+		description:{
+			required:true,
+			minlength:5
+		}
+	},
+	messages:{
+		modeProd:{
+			required:"Vous devez remplir ce champ.",
+		},
+		PU:{
+			required:"Vous devez remplir ce champ.",
+		},
+		Qte:{
+			required:"Vous devez remplir ce champ."
+		},
+		unite: {
+			required:"Vous devez remplir ce champ.",
+		},
+		rayon:{
+			required:"Vous devez remplir ce champ.",
+		},
+		variete:{
+			required:"Vous devez remplir ce champ."
+		},
+		produit:{
+			required:"Vous devez remplir ce champ.",
+		},
+		dateLDC:{
+			required:"Vous devez remplir ce champ.",
+			date:"Le format ne correspond pas."
+		},
+		description:{
+			required:"Vous devez remplir ce champ.",
+			minlength:"Description trop courte."
+		}
+	},
+	submitHandler: function(form) {
+    		form.submit();
+	}
+
+});
