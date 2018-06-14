@@ -1,4 +1,5 @@
 <?php
+
 function execReq($req) {
     global $cnx;
     if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {

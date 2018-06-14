@@ -1,3 +1,17 @@
+<?php
+function execReq($req) {
+    global $cnx;
+    if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {
+        echo ("Connexion impossible".$cnx->connect_error());
+        return false;   
+    }
+    $result = $cnx->query($req); 
+    //or die("La requête \"$req\" a échoué : ".$cnx->error);
+    // on ferme la connexion
+    mysqli_close($cnx);
+    return $result;
+}
+?>
 <!--Navbar-->
     <nav  id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <div class="container">
@@ -19,9 +33,6 @@
                     </li>
                         
                 </ul>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
-                </form>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="inscriptionNW.php">Inscription</a>  

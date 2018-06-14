@@ -39,55 +39,93 @@
 <br><br><br><br>
 
 <?php   
-function execReq($req) {
-    global $cnx;
-    if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {
-        echo ("Connexion impossible".$cnx->connect_error());
-        return false;   
-    }
-    $result = $cnx->query($req); 
-    //or die("La requête \"$req\" a échoué : ".$cnx->error);
-    // on ferme la connexion
-    mysqli_close($cnx);
-    return $result;
-}
+
 
     include 'menu.php'; 
 
     $reqProduits = "SELECT prodNom, prodImage, varNom, lotPU, umNom FROM variete INNER JOIN produit ON variete.prodID = produit.prodID INNER JOIN lot ON lot.varId = variete.varId INNER JOIN uniteMesure ON lot.umId = uniteMesure.umId;";
     $produits = execReq($reqProduits);
     $listeProd = array();
+?>
+<!-- Section: Products v.3 -->
+<section class='text-center my-5'>
 
+  <!-- Section heading -->
+  <h2 class='h1-responsive font-weight-bold text-center my-5'>Nos produits :</h2>
+
+ <?php
+    echo "<!-- Grid row -->
+		  <div class='row col-lg-11'>";
     while ($row = $produits->fetch_assoc()) {
     	//echo "<p>".$row['prodNom'].$row['prodImage'].$row['varNom'].$row['lotPU'].$row['umNom']."</p>";
-    	echo "<div class='card' style='width: 18rem;''>
-				  <img class='card-img-top' src='".$row['prodImage']."' alt='Card image cap'>
-				  <div class='card-body'>
-				    <p class='card-text'>".$row['prodNom']."</p>
-				  </div>
-				  <ul class='list-group list-group-flush'>
-				    <li class='list-group-item'>".$row['varNom']."</li>
-				    <li class='list-group-item'>".$row['lotPU']."€/".$row['umNom']."</li>
-				  </ul>
-				  <div class='card-body'>
-				    <a href='#' class='card-link'>Voir</a>
-				    <a href='#' class='card-link'>Ajouter au panier</a>
-				  </div>
-				</div>";
+		echo "<!-- Grid column -->
+			    <div class='col-lg-4 mb-4'>
+			      <!-- Card -->
+			      <div class='card align-items-center'>
+			        <!-- Card image -->
+			        <div class='view overlay'>
+			          <img src='".$row['prodImage']."'class='card-img-top' alt=''>
+			          <a>
+			            <div class='mask rgba-white-slight'></div>
+			          </a>
+			        </div>
+			        <!-- Card image -->
+			        <!-- Card content -->
+			        <div class='card-body text-center'>
+			          <!-- Category & Title -->
+			          <a href='' class='grey-text'>
+			            <h5>".$row['prodNom']."</h5>
+			          </a>
+			          <h5>
+			            <strong>
+			              <a href='' class='dark-grey-text'>".$row['varNom']."</a>
+			            </strong>
+			          </h5>
+			          <h4 class='font-weight-bold blue-text'>
+			            <strong>".$row['lotPU']."€/".$row['umNom']."</strong>
+			          </h4>
+			        </div>
+					<!-- Button trigger modal -->
+					<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalPanier'>
+					    Ajouter au panier
+					</button>			        
+					<!-- Card content -->
+			      </div>
+			      <!-- Card -->
+			    </div>
+			    <!-- Grid column -->";
     }
-
+echo "</div>
+	<!-- Grid row -->";
+echo "</section>
+			<!-- Section: Products v.3 -->";
 
 ?>
 
 
 
-
-
-
-
-
-
-
+<!-- Modal -->
+<div class='modal fade' id='modalPanier' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Séléctionner la quantité</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+            <form>
+            	
+            </form>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Annuler</button>
+                <button type='button' class='btn btn-primary'>Ajouter !</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

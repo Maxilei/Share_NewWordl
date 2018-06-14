@@ -5,8 +5,8 @@ function mailVerif() {
 	$sujet="Vérification du mail pour l'inscription sur NewWorld";
 	$messageTheo="Bonjour,merci de vous être enregistré sur notre magnifique site!Cliquez sur le lien suivant pour confirmer votre inscription  http://localhost/~tjouffreau/NW/nwTemplate/half-page-carousel/inscriptionNW.php?cle=1&btnIns=1&id=".$_POST['id'];
 	$messageMaxime ="Bonjour,merci de vous être enregistré sur notre magnifique site!Cliquez sur le lien suivant pour confirmer votre inscription  http://127.0.0.1/~miori/NewWorld/Share_NewWordl/mailConfirm.php?cle=1&btnIns=1&id=".$_POST['id'];
-	//mail($destinataire,$sujet,$messageTheo);
-	mail($destinataire,$sujet,$messageMaxime);
+	mail($destinataire,$sujet,$messageTheo);
+	//mail($destinataire,$sujet,$messageMaxime);
 }
 
 if(!isset($_GET['btnIns']) && !isset($_GET['cle'])){

@@ -1,3 +1,18 @@
+<?php
+require_once "connectBase.php";
+function execReq($req) {
+    global $cnx;
+    if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {
+        echo ("Connexion impossible".$cnx->connect_error());
+        return false;   
+    }
+    $result = $cnx->query($req); 
+    //or die("La requête \"$req\" a échoué : ".$cnx->error);
+    // on ferme la connexion
+    mysqli_close($cnx);
+    return $result;
+}
+?>
 <!--Navbar-->
     <nav  id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <div class="container">
@@ -11,18 +26,23 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="acheter.php">Acheter <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ajoutLot.php">Produire</a>
+                    <?php
+                        $reqEstProd = "SELECT count(utilisateurID) as prod FROM utilisateur WHERE userMail='".$_SESSION['mail']."' AND userRole='Producteur';";
+                        $estProd = execReq($reqEstProd)->fetch_assoc()['prod'];
+                        if ($estProd >=1) {
+                    echo "<li class='nav-item'>
+                        <a class='nav-link' href='ajoutLot.php'>Produire</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Distribuer</a>
-                    </li>
-                        
+                    <li class='nav-item'>
+                        <a class='nav-link' href='#'>Distribuer</a>
+                    </li>";
+                        }
+                    ?>
                 </ul>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
-                </form>
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="panier.php">Panier</a>  
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?deconnecte">Deconnexion</a>  
                     </li>

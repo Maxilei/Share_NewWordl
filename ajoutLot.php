@@ -102,29 +102,18 @@ require_once "connectBase.php";
     <!--/.Navbar-->
 <?php 
 
-function execReq($req) {
-    global $cnx;
-    if (!($cnx = mysqli_connect("localhost","maxime","passf203","dbNewWorld"))) {
-        echo ("Connexion impossible".$cnx->connect_error());
-        return false;   
-    }
-    $result = $cnx->query($req); 
-    //or die("La requête \"$req\" a échoué : ".$cnx->error);
-    // on ferme la connexion
-    mysqli_close($cnx);
-    return $result;
-}
 
 
 ?>
 
+    <script type="text/javascript" src="prodCompletion.js"></script>
 
     <br><br><br>
     <form class="form-inline" method="POST" action="traitementLot.php" id="lotForm">
         <div class="container">
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
                 <div class="col-lg-2 col-md-2 col-xs-2">Mode de Production</div>
-                <div class="form-control col-lg-8 col-md-8 col-xs-8">
+                <div class="form-control ">
                     <select class="browser-default" name="modeProd" id="modeProd">
                     <?php
                     global $cnx;
@@ -153,11 +142,11 @@ function execReq($req) {
                    <select id="uniteMesure" name="unite">
                         <?php
                         global $cnx;
-                        $req = "SELECT umDescription FROM uniteMesure";
+                        $req = "SELECT umId,umDescription FROM uniteMesure";
                         $result = execReq($req);
                         print_r($result);
                         while ($row = $result->fetch_assoc()) {
-                                echo "<option name='".$row['umDescription']."'>".$row['umDescription']."</option>";
+                                echo "<option name='".$row['umDescription']."' value=".$row['umId'].">".$row['umDescription']."</option>";
                         }
                         ?>
                     </select>
@@ -166,41 +155,27 @@ function execReq($req) {
             <div class="form-group col-lg-12 col-md-12 col-xs-12" name="centre">
                 <div class="col-lg-2 col-md-6 col-xs-6">Rayon</div>
                 <div class="form-control col-lg-2 col-md-6 col-xs-6">
-                    <select id="rayon" name="rayon">
+                    <select id="rayon" name="rayon" onclick="remplirListeDesProduits(this.value)">
                         <?php
-                        $req = "SELECT rayonNom FROM rayon";
+                        $req = "SELECT rayonId,rayonNom FROM rayon";
                         $result = execReq($req);
                         print_r($result);
                         while ($row = $result->fetch_assoc()) {
-                                echo "<option name='".$row['rayonNom']."'>".$row['rayonNom']."</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="col-lg-2 col-md-6 col-xs-6" >Variété</div>
-                <div class="form-control col-lg-2 col-md-6 col-xs-6">
-                    <select id="variete" name="variete">
-                        <?php
-                        $req = "SELECT varNom FROM variete";
-                        $result = execReq($req);
-                        print_r($result);
-                        while ($row = $result->fetch_assoc()) {
-                                echo "<option name='".$row['varNom']."'>".$row['varNom']."</option>";
+                                echo "<option name='".$row['rayonNom']."' value=".$row['rayonId'].">".$row['rayonNom']."</option>";
                         }
                         ?>
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-6 col-xs-6" >Produit</div>
                 <div class="form-control col-lg-2 col-md-6 col-xs-6">
-                    <select id="produit" name="produit">
-                        <?php
-                        $req = "SELECT prodNom FROM produit";
-                        $result = execReq($req);
-                        print_r($result);
-                        while ($row = $result->fetch_assoc()) {
-                                echo "<option name='".$row['prodNom']."'>".$row['prodNom']."</option>";
-                        }
-                        ?>
+                    <select id="produit" name="produit" onclick="remplirListeDesVarietes(this.value)">
+                        
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-6 col-xs-6" >Variété</div>
+                <div class="form-control col-lg-2 col-md-6 col-xs-6">
+                    <select id="variete" name="variete">
+                        
                     </select>
                 </div>
             </div>
@@ -225,8 +200,7 @@ function execReq($req) {
     <!--/.Footer-->
 
 </body>
-    
-    <script type="text/javascript" src="'validate.js"></script>
+    <script type="text/javascript" src="validate.js"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/tether.min.js"></script>
