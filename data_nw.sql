@@ -5,12 +5,12 @@ insert into QS values(4,"Le nom de votre meilleur ami(e)");
 insert into QS values(5,"Le nom de jeune fille de votre mere");
 insert into QS values(6,"Votre ville de naissance");
 
-insert into utilisateur values(1,"2013-08-21","","Paris","user1@gmail.com",0,"psw1",1,"Krouger","Andy","","8 rue du bac","","","Prod",6);
-insert into utilisateur values(2,"2014-01-13","","WoW","user2@gmail.com",0,"psw2",1,"Helmouth","Cassandra","","10 avenue du colonel moutarde","","","Prod",3);
-insert into utilisateur values(3,"2015-09-19","","Rocher du dragon","user3@gmail.com",0,"psw3",1,"Marcmoud","Rachid","","1945 boulevard d'auschwitz","","","Cons",2);
-insert into utilisateur values(4,"2015-12-21","","Gritando","user4@gmail.com",0,"psw4",1,"Rostain","Henry","","5 rue de l'avenir","","","Cons",5);
-insert into utilisateur values(5,"2016-05-19","","Lyon","user5@gmail.com",0,"psw5",1,"Hardison","Peterson","","404 rue des introuvables","","","Prod",6);
-insert into utilisateur values(6,"2017-02-02","","League of legends","user6@gmail.com",0,"psw6",1,"Richard","Prince","","105 rue des macarons","","","Cons",3);
+insert into utilisateur values(1,"2013-08-21","","Paris","user1@gmail.com",0,"psw1",1,"Krouger","Andy","","8 rue du bac","","","Producteur",6);
+insert into utilisateur values(2,"2014-01-13","","WoW","user2@gmail.com",0,"psw2",1,"Helmouth","Cassandra","","10 avenue du colonel moutarde","","","Producteur",3);
+insert into utilisateur values(3,"2015-09-19","","Rocher du dragon","user3@gmail.com",0,"psw3",1,"Chalas","Paul","","1945 boulevard d'auschwitz","","","Consommateur",2);
+insert into utilisateur values(4,"2015-12-21","","Gritando","user4@gmail.com",0,"psw4",1,"Rostain","Henry","","5 rue de l'avenir","","","Consommateur",5);
+insert into utilisateur values(5,"2016-05-19","","Lyon","user5@gmail.com",0,"psw5",1,"Hardison","Peterson","","404 rue des introuvables","","","Producteur",6);
+insert into utilisateur values(6,"2017-02-02","","League of legends","user6@gmail.com",0,"psw6",1,"Richard","Prince","","105 rue des macarons","","","Consommateur",3);
 insert into utilisateur values(7,"2018-01-02","","Marseille","user7@gmail.com",0,"psw7",1,"Stanford","William","","123 rue de l'algerie","","","PtRl",6);
 
 
@@ -24,7 +24,7 @@ insert into donnesBancaire values(7,"9517384265789135","12/18","943","MasterCard
 
 insert into producteur values(1,1,1);
 insert into producteur values(2,1,2);
-insert into producteur values(3,0,5);
+insert into producteur values(3,1,5);
 
 insert into consommateur values(1,3);
 insert into consommateur values(2,4);
@@ -66,18 +66,18 @@ insert into produit values(4,"Mer","",1,2);
 insert into produit values(5,"Tomate","",1,3);
 insert into produit values(6,"Pomme de terre","",1,3);
 
-insert into variete values(1,"Epaule","","",1,1);
-insert into variete values(2,"Entrecôte","","",1,1);
-insert into variete values(3,"Lard","","",1,2);
-insert into variete values(4,"Langue","","",1,2);
-insert into variete values(5,"Rascasse","","",1,3);
-insert into variete values(6,"Saran","","",1,3);
-insert into variete values(7,"Requin","","",1,4);
-insert into variete values(8,"Thon","","",1,4);
-insert into variete values(9,"Coeur de boeuf","","",1,5);
-insert into variete values(10,"Grappe","","",1,5);
-insert into variete values(11,"Belle de fontenay","","",1,6);
-insert into variete values(12,"Vitelotte","",	"",1,6);
+insert into variete values(1,"Epaule","/home/tjouffreau/catalogueNW/catalogueNWpdf/epaule.jpg","",1,1);
+insert into variete values(2,"Entrecôte","/home/tjouffreau/catalogueNW/catalogueNWpdf/entrecote.jpg","",1,1);
+insert into variete values(3,"Lard","/home/tjouffreau/catalogueNW/catalogueNWpdf/lard.jpg","",1,2);
+insert into variete values(4,"Langue","/home/tjouffreau/catalogueNW/catalogueNWpdf/langue.jpg","",1,2);
+insert into variete values(5,"Rascasse","/home/tjouffreau/catalogueNW/catalogueNWpdf/rascasse.jpeg","",1,3);
+insert into variete values(6,"Saran","/home/tjouffreau/catalogueNW/catalogueNWpdf/saran.jpg","",1,3);
+insert into variete values(7,"Requin","/home/tjouffreau/catalogueNW/catalogueNWpdf/requin.jpg","",1,4);
+insert into variete values(8,"Thon","/home/tjouffreau/catalogueNW/catalogueNWpdf/thon.jpeg","",1,4);
+insert into variete values(9,"Coeur de boeuf","/home/tjouffreau/catalogueNW/catalogueNWpdf/coeurBoeuf.jpeg","",1,5);
+insert into variete values(10,"Grappe","/home/tjouffreau/catalogueNW/catalogueNWpdf/grappe.jpeg","",1,5);
+insert into variete values(11,"Belle de fontenay","/home/tjouffreau/catalogueNW/catalogueNWpdf/belleDeFontenay.jpeg","",1,6);
+insert into variete values(12,"Vitelotte","/home/tjouffreau/catalogueNW/catalogueNWpdf/vitelotte.jpeg","",1,6);
 
 insert into uniteMesure values(1,"M","metre");
 insert into uniteMesure values(2,"L","litre");
@@ -100,3 +100,4 @@ insert into status values(4,"recuperé par le client");
 
 insert into LDC values(10,1,1,1,1);
 insert into LDC values(10,1,2,1,1);
+
